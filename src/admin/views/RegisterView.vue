@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-
+import handleRegister from "../composables/useRegister";
 </script>
 
 <style scoped>
