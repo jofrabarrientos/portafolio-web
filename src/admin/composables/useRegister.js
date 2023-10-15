@@ -1,7 +1,7 @@
 import axios from "axios";
 import {useAuthStore} from "@/stores/auth";
 
-const authStore = useAuthStore;
+const authStore = useAuthStore();
 
 const handleRegister = async (data) => {
     await authStore.getToken()
@@ -10,10 +10,8 @@ const handleRegister = async (data) => {
             name: data.name,
             email: data.email,
             password: data.password,
-            password_confirmation: data.password_confirmation,
-        }).then(() => {
-            this.router.push("/");
-        });
+            password_confirmation: data.password_confirmation
+        })
     } catch (error) {
         if (error.response.status === 422) {
             authStore.setErrors(error.response.data.errors);

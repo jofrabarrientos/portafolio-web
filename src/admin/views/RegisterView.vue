@@ -1,19 +1,27 @@
 <template>
     <div class="d-flex align-items-center py-4">
         <main class="form-signin w-100 m-auto">
-            <form>
+            <form @submit.prevent="onSubmit(form)">
                 <h1 class="h3 mb-3 fw-normal text-center">Regístrate</h1>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="nameInput" placeholder="Nombre">
+                    <input v-model="form.name"
+                        type="text" class="form-control" id="nameInput" placeholder="Nombre" required>
                     <label for="nameInput">Nombre</label>
                 </div>
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+                    <input v-model="form.email"
+                        type="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
                     <label for="emailInput">Correo Electrónico</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="passwordInput" placeholder="Contraseña">
+                    <input v-model="form.password"
+                        type="password" class="form-control" id="passwordInput" placeholder="Contraseña" required>
                     <label for="passwordInput">Contraseña</label>
+                </div>
+                <div class="form-floating">
+                  <input v-model="form.password_confirmation"
+                         type="password" class="form-control" id="passwordConfirmationInput" placeholder="Confirmar Contraseña" required>
+                  <label for="passwordInput">Confirmar Contraseña</label>
                 </div>
                 <button class="btn btn-primary w-100 py-2" type="submit">Registrarse</button>
             </form>
@@ -22,7 +30,25 @@
 </template>
 
 <script setup>
+import {ref} from "vue";
 import handleRegister from "../composables/useRegister";
+import {useRouter} from 'vue-router'
+
+const router = useRouter();
+
+const form = ref({
+  name: "",
+  email: "",
+  password: "",
+  password_confirmation: ""
+});
+
+const onSubmit = async form => {
+  await handleRegister(form).then( resolve =>
+      router.push('/admin/dashboard')
+  );
+
+};
 </script>
 
 <style scoped>
