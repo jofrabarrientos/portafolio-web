@@ -12,5 +12,15 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  watch: {
+    usePolling: true
+  },
+  server: {
+    hmr: {
+      host: 'localhost',
+      port: 5173,
+      overlay: true
+    }
   }
 })
