@@ -47,7 +47,6 @@ const onSubmit = async form => {
   await handleRegister(form).then( resolve =>
       router.push('/admin/dashboard')
   );
-
 };
 </script>
 
