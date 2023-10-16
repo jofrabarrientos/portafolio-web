@@ -3,7 +3,7 @@ import {useAuthStore} from "@/stores/auth";
 
 const authStore = useAuthStore();
 
-const handleRegister = async (data) => {
+export const handleRegister = async (data) => {
     await authStore.getToken()
     await axios.post("/register", {
         name: data.name,
@@ -16,5 +16,3 @@ const handleRegister = async (data) => {
         authStore.setError(error);
     });
 }
-
-export default handleRegister;

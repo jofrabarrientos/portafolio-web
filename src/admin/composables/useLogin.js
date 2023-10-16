@@ -3,7 +3,7 @@ import {useAuthStore} from "@/stores/auth";
 
 const authStore = useAuthStore();
 
-const handleLogin = async (data) => {
+export const handleLogin = async (data) => {
     await authStore.getToken();
     await axios.post("/login", {
         email: data.email,
@@ -14,5 +14,3 @@ const handleLogin = async (data) => {
         authStore.setError(error)
     });
 }
-
-export default handleLogin;

@@ -1,6 +1,6 @@
 <script setup>
 import {ref} from "vue";
-import handleRegister from "../composables/useRegister";
+import {handleRegister} from "../composables/useRegister";
 import {useAuthStore} from "@/stores/auth";
 
 const authStore = useAuthStore();
