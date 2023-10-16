@@ -19,22 +19,22 @@ const form = ref({
                 <h1 class="h3 mb-3 fw-normal text-center">Regístrate</h1>
                 <div class="form-floating">
                     <input v-model="form.name"
-                        type="text" class="form-control" id="nameInput" placeholder="Nombre" required>
+                        type="text" class="form-control startInputs" id="nameInput" placeholder="Nombre" required>
                     <label for="nameInput">Nombre</label>
                 </div>
                 <div class="form-floating">
                     <input v-model="form.email"
-                        type="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
+                        type="email" class="form-control middleInputs" id="emailInput" placeholder="name@example.com" required>
                     <label for="emailInput">Correo Electrónico</label>
                 </div>
                 <div class="form-floating">
                     <input v-model="form.password"
-                        type="password" class="form-control" id="passwordInput" placeholder="Contraseña" required>
+                        type="password" class="form-control middleInputs" id="passwordInput" placeholder="Contraseña" required>
                     <label for="passwordInput">Contraseña</label>
                 </div>
                 <div class="form-floating">
                   <input v-model="form.password_confirmation"
-                         type="password" class="form-control" id="passwordConfirmationInput" placeholder="Confirmar Contraseña">
+                         type="password" class="form-control finalInputs" id="passwordConfirmationInput" placeholder="Confirmar Contraseña" required>
                   <label for="passworxdInput">Confirmar Contraseña</label>
                 </div>
                 <div v-if="authStore.authErrors.message" class="alert alert-danger alert-dismissible fade show" role="alert">
