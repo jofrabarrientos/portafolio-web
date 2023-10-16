@@ -1,7 +1,21 @@
+<script setup>
+import {ref} from "vue";
+import handleRegister from "../composables/useRegister";
+import {useAuthStore} from "@/stores/auth";
+
+const authStore = useAuthStore();
+
+const form = ref({
+  name: "",
+  email: "",
+  password: "",
+  password_confirmation: ""
+});
+</script>
 <template>
     <div class="d-flex align-items-center py-4">
         <main class="form-signin w-100 m-auto">
-            <form @submit.prevent="onSubmit(form)">
+            <form @submit.prevent="handleRegister(form)">
                 <h1 class="h3 mb-3 fw-normal text-center">Regístrate</h1>
                 <div class="form-floating">
                     <input v-model="form.name"
@@ -20,35 +34,18 @@
                 </div>
                 <div class="form-floating">
                   <input v-model="form.password_confirmation"
-                         type="password" class="form-control" id="passwordConfirmationInput" placeholder="Confirmar Contraseña" required>
-                  <label for="passwordInput">Confirmar Contraseña</label>
+                         type="password" class="form-control" id="passwordConfirmationInput" placeholder="Confirmar Contraseña">
+                  <label for="passworxdInput">Confirmar Contraseña</label>
+                </div>
+                <div v-if="authStore.authErrors.message" class="alert alert-danger alert-dismissible fade show" role="alert">
+                 <strong>¡Error!</strong> {{ authStore.authErrors.message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 <button class="btn btn-primary w-100 py-2" type="submit">Registrarse</button>
             </form>
         </main>
     </div>
 </template>
-
-<script setup>
-import {ref} from "vue";
-import handleRegister from "../composables/useRegister";
-import {useRouter} from 'vue-router'
-
-const router = useRouter();
-
-const form = ref({
-  name: "",
-  email: "",
-  password: "",
-  password_confirmation: ""
-});
-
-const onSubmit = async form => {
-  await handleRegister(form).then( resolve =>
-      router.push('/admin/dashboard')
-  );
-};
-</script>
 
 <style scoped>
 .bd-placeholder-img {

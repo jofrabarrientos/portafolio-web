@@ -5,18 +5,16 @@ const authStore = useAuthStore();
 
 const handleRegister = async (data) => {
     await authStore.getToken()
-    try {
-        await axios.post("/register", {
-            name: data.name,
-            email: data.email,
-            password: data.password,
-            password_confirmation: data.password_confirmation
-        })
-    } catch (error) {
-        if (error.response.status === 422) {
-            authStore.setErrors(error.response.data.errors);
-        }
-    }
+    await axios.post("/register", {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        password_confirmation: data.password_confirmation
+    }).then(resolve => {
+        authStore.pushToRoute('/admin/dashboard')
+    }).catch( (error) => {
+        authStore.setError(error);
+    });
 }
 
-export default handleRegister
+export default handleRegister;

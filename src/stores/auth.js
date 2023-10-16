@@ -20,22 +20,6 @@ export const useAuthStore = defineStore("auth", {
             const data = await axios.get("/api/user");
             this.authUser = data.data;
         },
-        async handleLogin(data) {
-            this.authErrors = [];
-            await this.getToken();
-
-            try {
-                await axios.post("/login", {
-                    email: data.email,
-                    password: data.password,
-                });
-                this.router.push("/");
-            } catch (error) {
-                if (error.response.status === 422) {
-                    this.authErrors = error.response.data.errors;
-                }
-            }
-        },
         async handleLogout() {
             await axios.post("/logout");
             this.authUser = null;
@@ -65,8 +49,11 @@ export const useAuthStore = defineStore("auth", {
                 }
             }
         },
-        setErrors(error){
-            this.authErrors = error;
+        setError(error){
+            this.authErrors = error.response.data;
+        },
+        pushToRoute(route){
+            return this.router.push(route)
         }
     },
 });
