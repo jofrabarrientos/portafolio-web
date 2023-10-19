@@ -1,14 +1,14 @@
 <template>
     <div class="d-flex align-items-center py-4">
         <main class="form-signin w-100 m-auto">
-            <form>
+            <form @submit.prevent="handleLogin(form)">
                 <h1 class="h3 mb-3 fw-normal text-center">Iniciar Sesión</h1>
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <input v-model="form.email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                     <label for="floatingInput">Correo Electrónico</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input v-model="form.password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                     <label for="floatingPassword">Contraseña</label>
                 </div>
 
@@ -25,7 +25,12 @@
 </template>
 
 <script setup>
-
+import {handleLogin} from "../composables/useLogin";
+import {ref} from "vue";
+const form = ref({
+  email: "",
+  password: "",
+});
 </script>
 
 <style scoped>
