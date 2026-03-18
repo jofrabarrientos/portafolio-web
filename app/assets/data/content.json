@@ -1,0 +1,117 @@
+{
+  "personalInfo": {
+    "name": "José Barrientos",
+    "role": "Full Stack Dev",
+    "roles": [
+      "Full Stack Dev",
+      "Vue.js 3",
+      "Laravel 10"
+    ],
+    "bio": "José Barrientos, Ingeniero en Informática y desarrollador Full Stack con experiencia en Laravel 12, Vue.js 3 y Nuxt 4. Apasionado, proactivo y en busca de nuevos desafíos y aprendizaje constante.",
+    "cvLink": "https://drive.google.com/file/d/1sxbWEyqAK4KBPCzb_a8wRwqO6waYjxjy/view?usp=sharing",
+    "youtubeLink": "https://www.youtube.com/@jofradev",
+    "favicon": "/images/favicon.png",
+    "bannerImage": "/images/jose-images/foto-jose-barrientos-1.jpg"
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "subtitle": "Ingeniero Informático | Desarrollador Full Stack | DJ",
+    "description": "¡Hola! Soy Jose Barrientos. Mi carrera se define por la intersección de dos mundos que me apasionan: el desarrollo de software de alto rendimiento y la cultura del DJing.<br><br>Como Ingeniero Informático, me especializo en construir soluciones robustas y escalables utilizando tecnologías como PHP (con experiencia en Laravel, Zend Framework, CodeIgniter) y Vue.js. Mi enfoque no es solo escribir código limpio, sino crear productos que resuelvan problemas reales de usabilidad y SEO.",
+    "points": [
+      {
+        "title": "Lo que hago",
+        "description": "Actualmente, soy desarrollador Backend en RiskAmerica y en mis tiempos libres lidero el ecosistema de Portal DJ, un proyecto integral donde combino mis habilidades técnicas con mi visión de mercado.",
+        "icon": "/images/icon/about_1.png"
+      },
+      {
+        "title": "Proyectos Clave",
+        "description": "<b>PortalDJ.pro:</b> Un hub de noticias y estrategias para DJs.<br><b>My Portal DJ:</b> Una red social diseñada específicamente para la comunidad.<br><b>Hub.dj:</b> Una herramienta de 'link-in-bio' optimizada para artistas.",
+        "icon": "/images/icon/about_2.png"
+      }
+    ],
+    "experienceYears": "12+",
+    "experienceTitle": "Años de Experiencia",
+    "image": "/images/jose-images/foto-jose-barrientos-2.jpg"
+  },
+  "navigation": [
+    {
+      "label": "Inicio",
+      "anchor": "#banner",
+      "icon": "/svg/home-2.svg"
+    },
+    {
+      "label": "Experiencia",
+      "anchor": "#skills",
+      "icon": "/svg/path.svg"
+    },
+    {
+      "label": "Sobre Mí",
+      "anchor": "#about",
+      "icon": "/svg/clipboard.svg"
+    }
+  ],
+  "experience": [
+    {
+      "company": "RiskAmerica SPA",
+      "position": "Desarrollador Backend",
+      "period": "2025 - Actualmente",
+      "description": "Desarrollador Backend de soluciones de software para la industria de la ingeniería financiera.",
+      "skills": "PHP 8 - Laravel",
+      "percentage": 100
+    },
+    {
+      "company": "Portal DJ",
+      "position": "Desarrollador Full Stack y creador de contenido",
+      "period": "2015 - Actualmente",
+      "description": "Lidero el ecosistema de Portal DJ, un proyecto propio e integral donde combino mis habilidades técnicas con mi visión del mundo DJing.",
+      "skills": "PHP 8 - Laravel - Vue.js 3 - Nuxt 4 - Wordpress",
+      "percentage": 100
+    },
+    {
+      "company": "Servicio de Salud Araucanía Sur",
+      "position": "Jefe Unidad de Desarrollo y Tecnologías",
+      "period": "2024 - 2025",
+      "description": "Responsable de liderar a equipo y actividades de desarrollo, asegurando la entrega oportuna y efectiva de soluciones tecnológicas que apoyen las operaciones y la misión de la organización.",
+      "skills": "Liderazgo - Gestión de Proyectos",
+      "percentage": 100
+    },
+    {
+      "company": "Servicio de Salud Araucanía Sur",
+      "position": "Lider Técnico y Desarrollador Full Stack",
+      "period": "2023",
+      "description": "Encargado del liderazgo técnico, orientación y supervisión en el desarrollo de soluciones informáticas utilizando Laravel 10 y Vue.js 3.",
+      "skills": "Vue.js 3 - Laravel 10",
+      "percentage": 100
+    },
+    {
+      "company": "Lazos S.A. | Servicio de Salud Araucanía Sur",
+      "position": "Desarrollador Full Stack",
+      "period": "2022",
+      "description": "Encargado de desarrollar y mantener soluciones informáticas completas en el departamento de informática del Servicio de Salud Araucanía Sur, utilizando tecnologías como CodeIgniter 2, Laravel 8, Vue.js 2 y jQuery 1.11.",
+      "skills": "CodeIgniter 2 - jQuery 1.11",
+      "percentage": 100
+    },
+    {
+      "company": "FM Pulso",
+      "position": "Desarrollador Full Stack",
+      "period": "2012 - 2021",
+      "description": "Encargado de diseñar, implementar y mantener sistemas que optimicen los procesos de producción y emisión. Responsable de desarrollar soluciones de automatización para radio y televisión, utilizando WordPress y PHP.",
+      "skills": "PHP - Wordpress",
+      "percentage": 70
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidad Tecnológica de Chile INACAP",
+      "degree": "Ingenería en Informática",
+      "period": "2022",
+      "description": "Estudios superiores en el área de la informática, con énfasis en la planificación, dirección, implementación y documentación para el desarrollo de software y sistemas."
+    },
+    {
+      "institution": "Instituto Profesional INACAP",
+      "degree": "Analista Programador",
+      "period": "2020",
+      "description": "Estudios técnicos en el área de la informática, donde se adquirieron conocimientos en el desarrollo de software y sistemas."
+    }
+  ]
+}
