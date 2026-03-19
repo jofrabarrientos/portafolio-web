@@ -11,14 +11,15 @@
             <h1>
               ¡Hola!, Soy {{ personalInfo.name }}
               <br />
-              <span class="cd-headline rotate-1">
+              <span class="cd-headline">
                 <span class="cd-words-wrapper">
                   <b 
                     v-for="(role, index) in personalInfo.roles" 
                     :key="index"
                     :class="{ 
                       'is-visible': index === activeRoleIndex, 
-                      'is-hidden': index === lastRoleIndex 
+                      'is-hidden': index === lastRoleIndex,
+                      'is-waiting': index !== activeRoleIndex && index !== lastRoleIndex
                     }"
                   >
                     {{ role }}
@@ -48,7 +49,7 @@
         <div class="col-xxl-5 col-md-8 col-lg-5 mx-auto">
           <div class="tf__banner_img fade_right" data-trigerId="banner">
             <div class="img">
-              <img :src="personalInfo.bannerImage" alt="José Barrientos" class="img-fluid w-100">
+              <img :src="personalInfo.bannerImage" :alt="personalInfo.name" class="img-fluid w-100">
             </div>
           </div>
         </div>
@@ -71,11 +72,20 @@ const activeRoleIndex = ref(0)
 const lastRoleIndex = ref(-1)
 let rotationInterval = null
 
-onMounted(() => {
+const startRotation = () => {
   rotationInterval = setInterval(() => {
+    // 1. El que era activo ahora es el "último" (para que ejecute la animación de salida)
     lastRoleIndex.value = activeRoleIndex.value
+    
+    // 2. Cambiamos al siguiente índice
     activeRoleIndex.value = (activeRoleIndex.value + 1) % props.personalInfo.roles.length
-  }, 3000)
+  }, 3000) // 3 segundos entre cambios
+}
+
+onMounted(() => {
+  if (props.personalInfo.roles && props.personalInfo.roles.length > 0) {
+    startRotation()
+  }
 })
 
 onUnmounted(() => {
@@ -86,15 +96,16 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* Original Animated Headlines (rotate-1) CSS from template */
+/* Estructura del Headline */
 .cd-headline {
   font-size: 3rem;
   line-height: 1.2;
+  display: inline-block;
 }
 
 .cd-words-wrapper {
   display: inline-grid;
-  grid-template-areas: "word";
+  grid-template-areas: "word"; /* Superpone todos los 'b' en el mismo lugar */
   vertical-align: middle;
   perspective: 300px;
   min-height: 1.2em;
@@ -105,23 +116,35 @@ onUnmounted(() => {
   display: inline-block;
   white-space: nowrap;
   opacity: 0;
+  visibility: hidden;
   transform-origin: 50% 100%;
   transform: rotateX(180deg);
   backface-visibility: hidden;
 }
 
+/* ESTADO: ENTRANDO (Visible) */
 .cd-words-wrapper b.is-visible {
+  visibility: visible;
   opacity: 1;
   transform: rotateX(0);
-  animation: 1.2s cd-rotate-1-in forwards;
+  animation: cd-rotate-1-in 1.2s forwards;
 }
 
+/* ESTADO: SALIENDO (Hidden) */
 .cd-words-wrapper b.is-hidden {
+  visibility: visible;
   opacity: 0;
-  transform: rotateX(180deg);
-  animation: 1.2s cd-rotate-1-out forwards;
+  animation: cd-rotate-1-out 1.2s forwards;
 }
 
+/* ESTADO: EN ESPERA (No participa en la animación actual) */
+.cd-words-wrapper b.is-waiting {
+  visibility: hidden;
+  opacity: 0;
+  display: none; 
+}
+
+/* Animaciones */
 @keyframes cd-rotate-1-in {
   0% { transform: rotateX(180deg); opacity: 0; }
   35% { transform: rotateX(120deg); opacity: 0; }
