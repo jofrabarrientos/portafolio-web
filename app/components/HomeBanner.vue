@@ -85,25 +85,36 @@ onUnmounted(() => {
 <style scoped>
 /* Add specific styles for the rotating text if not well handled by existing CSS under Vue */
 .cd-words-wrapper {
-  display: inline-block;
-  position: relative;
+  display: inline-grid;
+  grid-template-areas: "word";
+  vertical-align: middle;
   text-align: left;
+  min-height: 1.25em;
+  line-height: 1.2;
 }
+
 .cd-words-wrapper b {
-  display: inline-block;
-  position: absolute;
+  grid-area: word;
   white-space: nowrap;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  transition: opacity 0.5s ease;
 }
-.cd-words-wrapper b.is-visible {
-  position: relative;
-  opacity: 1;
+
+.role-fade-enter-active, 
+.role-fade-leave-active {
+  transition: opacity 0.8s ease-in-out;
 }
-.cd-words-wrapper b.is-hidden {
+
+.role-fade-enter-from, 
+.role-fade-leave-to {
   opacity: 0;
+}
+
+.tf__banner_text h1 {
+  margin-bottom: 45px;
+  line-height: 1.2;
+}
+
+.tf__banner_text p {
+  margin-top: 15px;
 }
 
 /* Rounded Hexagonal crop for the banner image */
