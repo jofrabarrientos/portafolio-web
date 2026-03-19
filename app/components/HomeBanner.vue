@@ -15,7 +15,10 @@
                   <b 
                     v-for="(role, index) in personalInfo.roles" 
                     :key="index"
-                    :class="{ 'is-visible': index === activeRoleIndex, 'is-hidden': index !== activeRoleIndex }"
+                    :class="{ 
+                      'is-visible': index === activeRoleIndex, 
+                      'is-hidden': index === lastRoleIndex 
+                    }"
                   >
                     {{ role }}
                   </b>
@@ -63,16 +66,15 @@ const props = defineProps({
   }
 })
 
-// Simple word rotation logic to replace the jQuery cd-headline plugin if needed, 
-// though the original JS might handle it if we leave the classes.
-// However, implementing it in Vue is safer.
 const activeRoleIndex = ref(0)
+const lastRoleIndex = ref(-1)
 let rotationInterval = null
 
 onMounted(() => {
   rotationInterval = setInterval(() => {
+    lastRoleIndex.value = activeRoleIndex.value
     activeRoleIndex.value = (activeRoleIndex.value + 1) % props.personalInfo.roles.length
-  }, 3000) // Change word every 3 seconds
+  }, 3000)
 })
 
 onUnmounted(() => {
@@ -83,29 +85,57 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* Add specific styles for the rotating text if not well handled by existing CSS under Vue */
-.cd-words-wrapper {
-  display: inline-grid;
-  grid-template-areas: "word";
-  vertical-align: middle;
-  text-align: left;
-  min-height: 1.25em;
+/* Original Animated Headlines (rotate-1) CSS from template */
+.cd-headline {
+  font-size: 3rem;
   line-height: 1.2;
 }
 
+.cd-words-wrapper {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  vertical-align: middle;
+  perspective: 300px;
+  min-height: 1.2em; /* Ensure space for rotating words */
+}
+
 .cd-words-wrapper b {
-  grid-area: word;
+  display: inline-block;
+  position: absolute;
   white-space: nowrap;
-}
-
-.role-fade-enter-active, 
-.role-fade-leave-active {
-  transition: opacity 0.8s ease-in-out;
-}
-
-.role-fade-enter-from, 
-.role-fade-leave-to {
+  left: 0;
+  top: 0;
   opacity: 0;
+  transform-origin: 50% 100%;
+  transform: rotateX(180deg);
+  backface-visibility: hidden;
+}
+
+.cd-words-wrapper b.is-visible {
+  position: relative;
+  opacity: 1;
+  transform: rotateX(0);
+  animation: 1.2s cd-rotate-1-in;
+}
+
+.cd-words-wrapper b.is-hidden {
+  transform: rotateX(180deg);
+  animation: 1.2s cd-rotate-1-out;
+}
+
+@keyframes cd-rotate-1-in {
+  0% { transform: rotateX(180deg); opacity: 0; }
+  35% { transform: rotateX(120deg); opacity: 0; }
+  65% { opacity: 0; }
+  100% { transform: rotateX(360deg); opacity: 1; }
+}
+
+@keyframes cd-rotate-1-out {
+  0% { transform: rotateX(0); opacity: 1; }
+  35% { transform: rotateX(-40deg); opacity: 1; }
+  65% { opacity: 0; }
+  100% { transform: rotateX(180deg); opacity: 0; }
 }
 
 .tf__banner_text h1 {
