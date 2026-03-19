@@ -10,6 +10,7 @@
           <div class="tf__banner_text">
             <h1>
               ¡Hola!, Soy {{ personalInfo.name }}
+              <br />
               <span class="cd-headline rotate-1">
                 <span class="cd-words-wrapper">
                   <b 
@@ -92,20 +93,17 @@ onUnmounted(() => {
 }
 
 .cd-words-wrapper {
-  display: inline-block;
-  position: relative;
-  text-align: left;
+  display: inline-grid;
+  grid-template-areas: "word";
   vertical-align: middle;
   perspective: 300px;
-  min-height: 1.2em; /* Ensure space for rotating words */
+  min-height: 1.2em;
 }
 
 .cd-words-wrapper b {
+  grid-area: word;
   display: inline-block;
-  position: absolute;
   white-space: nowrap;
-  left: 0;
-  top: 0;
   opacity: 0;
   transform-origin: 50% 100%;
   transform: rotateX(180deg);
@@ -113,15 +111,15 @@ onUnmounted(() => {
 }
 
 .cd-words-wrapper b.is-visible {
-  position: relative;
   opacity: 1;
   transform: rotateX(0);
-  animation: 1.2s cd-rotate-1-in;
+  animation: 1.2s cd-rotate-1-in forwards;
 }
 
 .cd-words-wrapper b.is-hidden {
+  opacity: 0;
   transform: rotateX(180deg);
-  animation: 1.2s cd-rotate-1-out;
+  animation: 1.2s cd-rotate-1-out forwards;
 }
 
 @keyframes cd-rotate-1-in {
